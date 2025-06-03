@@ -20,7 +20,7 @@ private:
     void placeMines(int safeX, int safeY); // วางระเบิดบนกระดาน โดยยกเว้นตำแหน่งที่ผู้เล่นคลิกครั้งแรก (safeX, safeY)
     void calculateAdjacency();             // คำนวณจำนวนระเบิดที่อยู่รอบๆ ช่องแต่ละช่อง
     int countAdjacentMines(int x, int y);  // นับจำนวนระเบิดรอบๆ ช่องที่กำหนด
-    int revealEmpty(int x, int y);        // เปิดช่องว่างที่ไม่มีระเบิดรอบๆ อย่างต่อเนื่อง (recursive)
+    int revealEmpty(int x, int y);         // เปิดช่องว่างที่ไม่มีระเบิดรอบๆ อย่างต่อเนื่อง (recursive)
 
 public:
     Game(int w, int h, int m);                     // Constructor: สร้างเกมโดยกำหนดขนาดกระดาน และจำนวนระเบิด

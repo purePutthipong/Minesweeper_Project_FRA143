@@ -10,18 +10,22 @@
 #include <windows.h>
 #endif
 
-void enableVirtualTerminalProcessing() {
+void enableVirtualTerminalProcessing()
+{
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE) {
+    if (hOut == INVALID_HANDLE_VALUE)
+    {
         return;
     }
     DWORD dwMode = 0;
-    if (!GetConsoleMode(hOut, &dwMode)) {
+    if (!GetConsoleMode(hOut, &dwMode))
+    {
         return;
     }
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (!SetConsoleMode(hOut, dwMode)) {
+    if (!SetConsoleMode(hOut, dwMode))
+    {
         return;
     }
 #endif
@@ -34,26 +38,27 @@ int main()
     do
     {
         int width, height, mines;
-// แสดงเมนูเลือกความยาก
+        // แสดงเมนูเลือกความยาก
         std::cout << "==== MINESWEEPER ====\n";
         std::cout << "Select difficulty:\n";
         std::cout << "1. Easy (8x8, 10 mines)\n";
         std::cout << "2. Medium (12x12, 20 mines)\n";
         std::cout << "3. Hard (16x16, 40 mines)\n";
-        
+
         int choice;
         while (true)
         {
             std::cout << "Choice: ";
             std::cin >> choice;
 
-            if (std::cin.fail()) {
-                std::cin.clear(); // clear error flags
+            if (std::cin.fail())
+            {
+                std::cin.clear();                                                   // clear error flags
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard invalid input
                 std::cout << RED << "Invalid input. Please enter a number." << RESET << "\n";
                 continue;
             }
-// ตั้งค่าขนาดกระดานและจำนวนกับดักตามระดับความยาก
+            // ตั้งค่าขนาดกระดานและจำนวนกับดักตามระดับความยาก
             if (choice == 1)
             {
                 width = height = 8, mines = 10;
@@ -72,9 +77,9 @@ int main()
             else
                 std::cout << RED << "Invalid input. Please enter a number between 1-3." << RESET << "\n";
         }
-// สร้างออบเจกต์เกมด้วยพารามิเตอร์ที่เลือกไว้
+        // สร้างออบเจกต์เกมด้วยพารามิเตอร์ที่เลือกไว้
         Game game(width, height, mines);
- // วนลูปจนกว่าจะชนกับระเบิดหรือชนะ
+        // วนลูปจนกว่าจะชนกับระเบิดหรือชนะ
         while (!game.isGameOver() && !game.isWin())
         {
             game.printBoard();
@@ -90,7 +95,7 @@ int main()
 
             if (!(iss >> cmd >> y >> x))
             {
-            // หากป้อนคำสั่งไม่ตรงตามเงื่อนไขcommand,column,rowจะปริ้น
+                // หากป้อนคำสั่งไม่ตรงตามเงื่อนไขcommand,column,rowจะปริ้น
                 std::cout << RED << "Invalid command format. Please try again, e.g. r 1 2 or f 0 3" << RESET << "\n";
                 continue;
             }
@@ -101,13 +106,13 @@ int main()
                 continue;
             }
 
-        if (cmd == 'r') // เปิดช่อง
-            if (cmd == 'r') 
-                game.revealCell(x, y);
-            else if (cmd == 'f') // วางหรือเอาธงออก
-                game.toggleFlag(x, y);
-            else
-                std::cout << RED << "Unknown command. Please use 'r' to reveal or 'f' to flag." << RESET << "\n";
+            if (cmd == 'r') // เปิดช่อง
+                if (cmd == 'r')
+                    game.revealCell(x, y);
+                else if (cmd == 'f') // วางหรือเอาธงออก
+                    game.toggleFlag(x, y);
+                else
+                    std::cout << RED << "Unknown command. Please use 'r' to reveal or 'f' to flag." << RESET << "\n";
         }
 
         game.printBoard(true); // แสดงกระดานทั้งหมดเมื่อจบเกม

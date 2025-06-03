@@ -32,11 +32,11 @@ void Game::placeMines(int safeX, int safeY)
                 continue;
             positions.emplace_back(i, j);
         }
-// สุ่มตำแหน่ง
+    // สุ่มตำแหน่ง
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(positions.begin(), positions.end(), g);
-// วางระเบิดตามจำนวนที่กำหนด
+    // วางระเบิดตามจำนวนที่กำหนด
     for (int i = 0; i < mines; ++i)
     {
         auto [x, y] = positions[i];

@@ -18,9 +18,9 @@ void Cell::toggleFlag()
     if (!revealed)
         flagged = !flagged;
 }
-bool Cell::isRevealed() const { return revealed; }  // ตรวจสอบว่าช่องถูกเปิดหรือยัง
-bool Cell::isFlagged() const { return flagged; } // ตรวจสอบว่าช่องถูกตั้งธงหรือไม่
-int Cell::getAdjacentMines() const { return adjacentMines; } // คืนค่าจำนวนระเบิดรอบข้าง
-void Cell::setAdjacentMines(int count) { adjacentMines = count; }// ตั้งค่าจำนวนระเบิดรอบข้าง
+bool Cell::isRevealed() const { return revealed; }                // ตรวจสอบว่าช่องถูกเปิดหรือยัง
+bool Cell::isFlagged() const { return flagged; }                  // ตรวจสอบว่าช่องถูกตั้งธงหรือไม่
+int Cell::getAdjacentMines() const { return adjacentMines; }      // คืนค่าจำนวนระเบิดรอบข้าง
+void Cell::setAdjacentMines(int count) { adjacentMines = count; } // ตั้งค่าจำนวนระเบิดรอบข้าง
 void Cell::setMine(bool m) { mine = m; }
- // ตั้งค่าว่าช่องนี้เป็นระเบิดหรือไม่
+// ตั้งค่าว่าช่องนี้เป็นระเบิดหรือไม่

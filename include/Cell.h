@@ -12,7 +12,7 @@ protected:
     bool flagged;      // true ถ้ามีธงปักไว้
 
 public:
-     Cell();
+    Cell();
     virtual ~Cell();
 
     virtual bool reveal() override;                    // เมธอดเปิดช่อง ถ้าเปิดแล้วจะคืนค่า true
